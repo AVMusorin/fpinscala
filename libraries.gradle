@@ -1,0 +1,10 @@
+ext {
+    scalaBinaryVersion = "2.11"
+    scalaVersion = "${scalaBinaryVersion}.12"
+
+    libraries = [
+            scala: "org.scala-lang:scala-library:${scalaVersion}",
+            scalaTest: "org.scalatest:scalatest_${scalaBinaryVersion}:3.0.4",
+            pegdown: "org.pegdown:pegdown:1.6.0"
+    ]
+}

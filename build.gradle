@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'scala'
+}
+
+group 'fp'
+version '1.0-SNAPSHOT'
+
+apply from: "libraries.gradle"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile libraries.scala
+    testCompile libraries.scalaTest
+}
