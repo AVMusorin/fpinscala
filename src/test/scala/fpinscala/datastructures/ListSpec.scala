@@ -70,5 +70,68 @@ class ListSpec extends FunSpec with Matchers {
 
       List.init(l) should be (List(1, 2, 3))
     }
+
+    it("should work with foldRight") {
+      val l = List(1, 2, 3)
+
+      List.foldRight(l, 1)(_ * _) should be (6)
+    }
+
+    it("should work with ex 3.9") {
+      val l = List(1, 2, 3, 4)
+      val l1 = Nil
+
+      List.length(l) should be (4)
+      List.length(l1) should be (0)
+    }
+
+    it("should work with foldLeft ex 3.10") {
+      val l = List(1, 2, 3)
+
+      List.foldLeft(l, 0)(_ + _) should be (6)
+    }
+
+    it("should work with ex 3.12") {
+      val l = List(1, 2, 3)
+      List.reverse(l) should be (List(3, 2, 1))
+    }
+
+    it("should work with ex 3.13") {
+      val l = List(1, 2, 3)
+      List.foldRightViaFoldLeft(l, 0)(_ + _) should be(6)
+    }
+
+    it("should work with ex 3.14") {
+      val l = List(1, 2, 3)
+      List.append(l, List(5)) should be(List(1, 2, 3, 5))
+    }
+
+    it("should work with ex 3.18") {
+      val l = List(1, 2, 3)
+      List.map(l)(x => x * 2) should be(List(2, 4, 6))
+    }
+
+    it("should work with ex 3.19") {
+      val l = List(1, 5, 10, 1)
+      List.filter(l)(x => x % 2 == 0) should be(List(10))
+    }
+
+    it("should work with ex 3.20") {
+      val l = List(1, 2, 3)
+      List.flatMap(l)(x => List(x, x)) should be(List(1, 1, 2, 2, 3, 3))
+    }
+
+    it("should work with ex 3.21") {
+      val l = List(1, 5, 10, 1)
+      List.filter(l)(x => x % 2 == 0) should be(List(10))
+    }
+
+    it("should work with ex 3.23") {
+      val l1, l2 = List(1, 2, 3)
+      val l3 = List(1, 2)
+      List.zipWith(l1, l2)((a, b) => a + b) should be (List(2, 4, 6))
+      List.zipWith(l1, Nil)((a, b) => a + b) should be (Nil)
+      List.zipWith(l1, l3)((a, b) => a + b) should be (List(2, 4))
+    }
   }
 }
