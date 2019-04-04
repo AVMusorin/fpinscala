@@ -43,5 +43,16 @@ class OptionSpec extends FunSpec with Matchers {
       o.flatMap(x => Some(x * 2)) should be(Some(2))
       o2.flatMap(x => Some(x * 2)) should be(None)
     }
+
+    it("should work with ex 4.3") {
+      Option.map2(Some(1), Some(2))((x, y) => x + y) should be (Some(3))
+      Option.map2(Some(1), None)((x, y) => x + y) should be (None)
+    }
+
+    it("should work with sequence") {
+      val l = List(Some(1), Some(2))
+
+      Option.sequence(l) should be (Some(List(1, 2)))
+    }
   }
 }
