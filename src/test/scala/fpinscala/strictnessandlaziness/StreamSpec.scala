@@ -67,5 +67,9 @@ class StreamSpec extends FunSpec with Matchers {
     it("should work with ex 5.7 flatMap") {
       Stream(1, 2, 3).flatMap(x => Stream(x, x)).toList should be (List(1, 1, 2, 2, 3, 3))
     }
+
+    it("should work with ex. 5.10") {
+      Stream.fibs().take(5) should be (List(0, 1, 1, 2, 3))
+    }
   }
 }

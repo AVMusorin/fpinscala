@@ -117,4 +117,31 @@ object Stream {
 
   def apply[A](as: A*): Stream[A] =
     if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
+
+  /**
+    * Создает бесконечный список, где каждый элемент, переданное значение
+    */
+  def constant[A](a: A): Stream[A] = cons(a, constant(a))
+
+  /**
+    * Создает бесконечный список с арифметической прогрессией
+    */
+  def from(n: Int): Stream[Int] = cons(n, from(n + 1))
+
+  /**
+    * Бесконечный список из чисел Фиббоначи
+    */
+  def fibs(): Stream[Int] = {
+    def generateFib(a: Int, b: Int): Stream[Int] = {
+      cons(a, generateFib(b, a + b))
+    }
+    generateFib(0, 1)
+  }
+
+  def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = {
+    f(z) match {
+      case Some((x, xs)) => cons(x, unfold(xs)(f))
+      case None => empty
+    }
+  }
 }
