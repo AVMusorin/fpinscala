@@ -29,5 +29,19 @@ class StateSpec extends FunSpec with Matchers {
       l should be (List(-549383847, -1151252339, 384748))
       r should be (SimpleRNG(245470556921330L))
     }
+
+    it("should work with ex. 6.5") {
+      val random = SimpleRNG(1L)
+      val (n, r) = RNG.doubleViaMap()(random)
+      assert(n >= 0 && n < 1)
+      r should be (SimpleRNG(25214903928L))
+    }
+
+    it("should work with ex. 6.6") {
+      val random = SimpleRNG(1L)
+      val (n, r) = RNG.map2(RNG.nonNegativeInt, RNG.nonNegativeInt)(_ + _)(random)
+      n should be (769496)
+      r should be (SimpleRNG(25214903928L))
+    }
   }
 }
